@@ -7,8 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="grid-cols-7" >
+<body >
+<div>
 {% include 'core/nav.html' %}
+</div>
+<div class="mx-auto">
+{% include 'core/search.html' %}
+</div>
+<div class="grid-cols-7">
 {% block content %}
     <div class="p-8 grid gap-2 grid-cols-2 grid-rows-2 md:gap-3 md:grid-cols-3 md:grid-rows-3 lg:gap-4 lg:grid-cols-4 lg:grid-rows-4 ">
        {% for listing in data.iterator %}
@@ -25,14 +31,7 @@
     </div>
     {% endfor %}
     </div>
-
-
-
-
-
-
-
 {% endblock content %}
-
+</div>
 </body>
 </html>
