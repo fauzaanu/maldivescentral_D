@@ -18,7 +18,7 @@ class Cat(models.Model):
 
 class Listing(models.Model):
     listing_name = models.CharField(max_length=100)
-    listing_description = models.TextField(max_length=500)
+    listing_description = models.TextField(max_length=100)
     listing_seo_name = models.SlugField(unique=True, blank=False, editable=False)
     listing_original_url = models.CharField(max_length=200, default="#")
     listing_category = models.ManyToManyField(Cat)
