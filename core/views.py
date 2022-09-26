@@ -7,7 +7,7 @@ def homepage(request,):
     listings = Listing.objects.all()
     cats = Cat.objects.all()
     context = {"data":listings, 'cats':cats}
-    return render(request,template_name='core/base.html',context=context)
+    return render(request,template_name='core/home.html',context=context)
 
 def homepage_filtered(request,catname):
     listings = Listing.objects.filter(listing_category__category_slug=catname)

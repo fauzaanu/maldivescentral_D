@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}MALDIVESCENTRAL - Maldives Digital Directory{% endblock title %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="{% static 'core/logo.svg' %}"/>
+{% include 'core/analytics.html' %}
+</head>
+<body class="bg-slate-100" >
+{#<div>#}
+{#{% include 'core/nav.html' %}#}
+{#</div>#}
+
+<div class="p-8 bg-slate-900">
+<h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">MaldivesCentral</span></h1>
+<p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Help us build the ultimate digital directory of Maldives.</p>
+
+<div class="pt-4">
+{#<button onclick="location.href='/add'" type="button" class="text-white bg-slate-800 hover:bg-slate-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">#}
+{#Add Listing#}
+{#<svg aria-hidden="true" class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>#}
+{#</button>#}
+{% include 'core/add.html' %}
+</div>
+</div>
+
+
+
+
+<div class="mx-auto">
+{% include 'core/search.html' %}
+</div>
+
+
+<div class="p-8 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-4 lg:grid-cols-3 lg:gap-4 xl:grid-cols-4 xl:gap-4 2xl:grid-cols-5 2xl:gap-4">
+{% block content %}
+    {% for cat in cats.iterator %}
+
+<a href="/cat/{{ cat.category_slug }}" class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ cat.category_name }}</h5>
+</a>
+{% endfor %}
+
+
+{% endblock content %}
+</div>
+
+
+<div class="p-8">
+{% include 'core/footer.html' %}
+</div>
+</body>
+</html>

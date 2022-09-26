@@ -9,7 +9,7 @@ urlpatterns = [
     path('search',searchview, name='search'),
     path('adder',adder_view, name='adder'),
     path('cat/<str:catname>',homepage_filtered, name="filtered"),
-    path('add',add_view,name='add_up')
+    #path('add',add_view,name='add_up')
 
 ]
 
