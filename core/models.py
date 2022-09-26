@@ -1,3 +1,4 @@
+from django.contrib.sitemaps import ping_google
 from django.db import models
 from django.utils.text import slugify
 
@@ -16,6 +17,13 @@ class Cat(models.Model):
     def save(self, *args, **kwargs):
         self.category_slug = slugify(self.category_name)
         super(Cat, self).save(*args, **kwargs)
+
+        try:
+            ping_google()
+        except:
+            pass
+    def get_absolute_url(self):
+        return f"/{self.category_slug}"
 
 
 class Listing(models.Model):
