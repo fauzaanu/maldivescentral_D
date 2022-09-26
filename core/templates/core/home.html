@@ -9,6 +9,20 @@
     <meta name="description" content="MaldivesCentral.com is the ultimate digital directory of Maldives">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="{% static 'core/logo.svg' %}"/>
+
+    <meta name="twitter:card" content="Help us build the ultimate digital
+        directory of Maldives." >
+    <meta name="twitter:site" content="@maldivescentral" >
+    <meta name="twitter:creator" content="@maldivescentral" >
+    <meta property="og:title" content="Help us build the ultimate digital directory of Maldives." >
+{% for val2 in cats.iterator %}
+    {% if val2.category_slug in request.path %}
+        <meta property="og:description" content="MaldivesCentral.com is the ultimate digital directory of Maldives. Explore Maldivian Links that fit into the {{ val2.category_name }} Category, in this page.">
+    {% endif %}
+{% endfor %}
+
+<meta property="og:image" content="{% static 'core/og_main.png' %}" >
+
 {% include 'core/analytics.html' %}
 </head>
 <body class="bg-slate-100" >

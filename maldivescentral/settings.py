@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-ao&)@6^sdr-46!l*=vtup*um7()(arc_1cl7npm%rr=#taey)_
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
+WHITENOISE_AUTOREFRESH = True
 ALLOWED_HOSTS = ['139.59.88.141','127.0.0.1','maldivescentral.com']
 
 SITE_ID = 1
@@ -120,7 +120,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "/static")
 STATIC_URL = '/static/'
