@@ -3,66 +3,121 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}MALDIVESCENTRAL - Maldives Digital Directory{% endblock title %}</title>
+
+{% for val2 in cats.iterator %}
+    {% if val2.category_slug in request.path %}
+        <title>{% block title %} MALDIVESCENTRAL - {{ val2.category_name }} {% endblock title %}</title>
+    {% endif %}
+{% endfor %}
+
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% for val2 in cats.iterator %}
+    {% if val2.category_slug in request.path %}
+        <meta name="description" content="MaldivesCentral.com is the ultimate digital directory of Maldives. Explore Maldivian Links that fit into the {{ val2.category_name }} Category, in this page.">
+    {% endif %}
+{% endfor %}
+
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="{% static 'core/logo.svg' %}"/>
-{% include 'core/analytics.html' %}
+    {% include 'core/analytics.html' %}
 </head>
-<body class="bg-slate-100" >
+<body class="bg-slate-100">
 {#<div>#}
 {#{% include 'core/nav.html' %}#}
 {#</div>#}
 
-<div class="p-8 bg-slate-900">
-<h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">MaldivesCentral</span></h1>
-<p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Help us build the ultimate digital directory of Maldives.</p>
 
-<div class="pt-4">
-<button onclick="location.href='/'" type="button" class="text-white bg-slate-800 hover:bg-slate-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
-Add Listing
-<svg aria-hidden="true" class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-</button>
-        </div>
+
+
+
+
+<div class="p-8 bg-slate-900">
+    <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span
+            class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">MaldivesCentral</span>
+    </h1>
+    <p class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Help us build the ultimate digital
+        directory of Maldives.</p>
+
+    <div class="pt-4">
+        <button onclick="location.href='/'" type="button"
+                class="text-white bg-slate-800 hover:bg-slate-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+            Add Listing
+            <svg aria-hidden="true" class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                      clip-rule="evenodd"></path>
+            </svg>
+        </button>
     </div>
+</div>
 <hr>
 
 
-
 <div class="mx-auto">
-{% include 'core/search.html' %}
+    {% include 'core/search.html' %}
 </div>
 
 <div class="mx-auto">
-{% include 'core/filter_buttons.html' %}
+    {% include 'core/filter_buttons.html' %}
 </div>
 
-<div class="grid-cols-7">
 {% block content %}
     <hr>
-    <div class="p-8 grid gap-1 grid-cols-1 grid-rows-1 md:gap-3 md:grid-cols-3 md:grid-rows-3 lg:gap-4 lg:grid-cols-4 lg:grid-rows-4 xl:gap-5 xl:grid-cols-5 xl:grid-rows-5">
-
-        {% for listing in data.iterator %}
-
-    <div class="p-6 max-w-sm bg-slate-900 rounded-lg border border-gray-200 shadow-md">
-    <a href="{{listing.listing_original_url}}">
-        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">{{listing.listing_name}}</h5>
-    </a>
-    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{listing.listing_description}}</p>
-    <a href="{{listing.listing_original_url}}" class="inline-flex items-center text-blue-600 hover:underline">
-        Visit website
-        <svg class="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg>
-    </a>
-</div>
-        {% endfor %}
+        {% if data|length > 0 %}
+            <div class="p-8 grid gap-1 grid-cols-1 grid-rows-1 md:gap-3 md:grid-cols-3 md:grid-rows-3 lg:gap-4 lg:grid-cols-4 lg:grid-rows-4 xl:gap-5 xl:grid-cols-5 xl:grid-rows-5">
+            {% for listing in data.iterator %}
+                <div class="p-6 max-w-sm bg-slate-900 rounded-lg border border-gray-200 shadow-md">
+                    <a href="{{ listing.listing_original_url }}">
+                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">{{ listing.listing_name }}</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{ listing.listing_description }}</p>
+                    <a href="{{ listing.listing_original_url }}"
+                       class="inline-flex items-center text-blue-600 hover:underline">
+                        Visit website
+                        <svg class="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
+                            <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
+                        </svg>
+                    </a>
+                </div>
+            {% endfor %}
     </div>
+
+        {% else %}
+            <div class="m-8 p-8 bg-slate-900 rounded grid-cols-1 grid-rows-1">
+                <div class="p-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300"
+                     role="alert">
+
+                    {% for val2 in cats.iterator %}
+                        {% if val2.category_slug in request.path %}
+                            <span class="font-medium">No Listings in {{ val2.category_name }} -- Yet! </span> Would you like to List one Perheps?
+
+                        {% endif %}
+                    {% endfor %}
+
+
+
+                </div>
+
+                <div class="mt-10">{% include 'core/add.html' %}</div>
+
+            </div>
+        {% endif %}
+
+
+
 {% endblock content %}
-</div>
 
 
 <div class="p-8">
-{% include 'core/footer.html' %}
+    {% include 'core/footer.html' %}
 </div>
+
 </body>
 </html>
