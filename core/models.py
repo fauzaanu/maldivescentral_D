@@ -5,8 +5,10 @@ from django.utils.text import slugify
 # Create your models here.
 
 class Cat(models.Model):
-    category_name=models.CharField(max_length=100)
-    category_slug = models.SlugField(unique=False, blank=False, editable=False, default='#')
+    category_name = models.CharField(max_length=100)
+    category_slug = models.SlugField(unique=False, blank=True, editable=False, default="#")
+    category_color = models.CharField(max_length=50, blank=False, default='blue')
+    category_blank = models.CharField(blank=True, max_length=100)
 
     def __str__(self):
         return self.category_name

@@ -39,8 +39,7 @@
 <div class="p-8 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-4 lg:grid-cols-3 lg:gap-4 xl:grid-cols-4 xl:gap-4 2xl:grid-cols-5 2xl:gap-4">
 {% block content %}
     {% for cat in cats.iterator %}
-
-<a href="/cat/{{ cat.category_slug }}" class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+<a href="/cat/{{ cat.category_slug }}" class="block p-6 max-w-sm bg-{{ cat.category_color|escape }}-900 rounded-lg border border-gray-200 shadow-md hover:bg-{{ cat.category_color|escape }}-600">
     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ cat.category_name }}</h5>
 </a>
 {% endfor %}
