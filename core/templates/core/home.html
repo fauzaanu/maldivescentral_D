@@ -40,7 +40,7 @@
 {% block content %}
     {% for cat in cats.iterator %}
 <a href="/cat/{{ cat.category_slug }}" class="block p-6 max-w-sm bg-{{ cat.category_color|escape }}-900 rounded-lg border border-gray-200 shadow-md hover:bg-{{ cat.category_color|escape }}-600">
-    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ cat.category_name }}</h5>
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">{{ cat.category_name }}</h5>
 </a>
 {% endfor %}
 
