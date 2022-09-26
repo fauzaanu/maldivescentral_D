@@ -23,7 +23,7 @@ class Cat(models.Model):
         except:
             pass
     def get_absolute_url(self):
-        return f"/{self.category_slug}"
+        return f"/cat/{self.category_slug}"
 
 
 class Listing(models.Model):
