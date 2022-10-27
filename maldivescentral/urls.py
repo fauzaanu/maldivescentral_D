@@ -17,8 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path('', include('pwa.urls')),
     path('01helpedmin/', admin.site.urls),
-    path('',include('core.urls'))
+    path('',include('core.urls')),
 ]
 
 

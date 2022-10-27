@@ -19,15 +19,9 @@ def homepage_filtered(request,catname):
 def add_view(request):
     return render(request, template_name='core/add.html',)
 
-
 def adder_view(request):
     name = "a"
     link = "a"
-    if request.POST:
-        name = request.POST['name']
-        link = request.POST['link']
-
-    print(name,link)
 
     import requests
     def warningsystem(msg):
@@ -37,7 +31,15 @@ def adder_view(request):
         x = requests.get(f"https://api.telegram.org/bot{tapi_key}/sendMessage?chat_id={tg_chat_id}&text={msg}")
         # return x # FOR DEBUG
 
-    warningsystem(f"New listing Name={name}, Link={link}")
+    if request.POST:
+        name = request.POST['name']
+        link = request.POST['link']
+
+        blank_cat = Cat.objects.first()
+        listing = Listing(listing_name=name,listing_description="",listing_seo_name="#",listing_original_url=link)
+        listing.save()
+        listing.listing_category.add(blank_cat)
+        warningsystem(f"New listing Name={name}, Link={link}")
 
     return redirect('home')
 

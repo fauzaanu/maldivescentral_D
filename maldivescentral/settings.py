@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'django.contrib.sitemaps',
     'django.contrib.sites',
+    'pwa',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,24 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'core/static/core/js/', 'serviceworker.js')
+
+
+PWA_APP_NAME = 'MaldivesCentral'
+PWA_APP_DESCRIPTION = "The Maldives Social Directory"
+PWA_APP_THEME_COLOR = '#000000'
+PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'any'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_ICONS = [
+	{
+		'src': 'static/core/logo.svg',
+		'sizes': '150x150'
+	}
+]
+PWA_APP_DIR = 'ltr'
+PWA_APP_LANG = 'en-US'
